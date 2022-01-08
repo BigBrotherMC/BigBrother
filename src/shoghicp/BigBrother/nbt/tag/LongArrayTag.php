@@ -38,7 +38,7 @@ use function implode;
 use function is_int;
 use function str_repeat;
 
-class LongArrayTag extends NamedTag{
+class LongArrayTag extends NamedTag {
 	/** @var int[] */
 	private $value;
 
@@ -46,12 +46,12 @@ class LongArrayTag extends NamedTag{
 	 * @param string $name
 	 * @param int[] $value
 	 */
-	public function __construct(string $name = "", array $value = []){
+	public function __construct(string $name = "", array $value = []) {
 		parent::__construct($name);
 
-		assert((function() use(&$value) : bool{
-			foreach($value as $v){
-				if(!is_int($v)){
+		assert((function() use(&$value) : bool {
+			foreach ($value as $v) {
+				if (!is_int($v)) {
 					return false;
 				}
 			}
@@ -62,26 +62,26 @@ class LongArrayTag extends NamedTag{
 		$this->value = $value;
 	}
 
-	public function getType() : int{
-		return 12;//LongArray
+	public function getType() : int {
+		return 12; //LongArray
 	}
 
-	public function read(NBTStream $nbt, ReaderTracker $tracker) : void{
-		//Not implement
+	public function read(NBTStream $nbt, ReaderTracker $tracker) : void {
+		//Not implemented
 	}
 
-	public function write(NBTStream $nbt) : void{
-		//Not implement
+	public function write(NBTStream $nbt) : void {
+		//Not implemented
 	}
 
-	public function toString(int $indentation = 0) : string{
+	public function toString(int $indentation = 0) : string {
 		return str_repeat("  ", $indentation) . get_class($this) . ": " . ($this->__name !== "" ? "name='$this->__name', " : "") . "value=[" . implode(",", $this->value) . "]";
 	}
 
 	/**
 	 * @return int[]
 	 */
-	public function getValue() : array{
+	public function getValue() : array {
 		return $this->value;
 	}
 }
